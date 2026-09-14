@@ -14,6 +14,14 @@ impl<T> Stack<T> {
     pub fn pop(&mut self) -> Option<T> {
         self.data.pop()
     }
+
+    pub fn peek(&self) -> Option<&T> {
+        self.data.last()
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.data.is_empty()
+    }
 }
 
 #[cfg(test)]
@@ -43,5 +51,33 @@ mod tests {
         assert_eq!(stack.pop(), Some(20));
         assert_eq!(stack.pop(), Some(10));
         assert_eq!(stack.pop(), None);
+    }
+
+    #[test]
+    fn peek_element() {
+        let mut stack = Stack::<i32>::new();
+        stack.push(10);
+        stack.push(20);
+        assert_eq!(stack.peek(), Some(&20));
+        stack.push(30);
+        assert_eq!(stack.peek(), Some(&30));
+        stack.pop();
+        stack.pop();
+        assert_eq!(stack.peek(), Some(&10));
+        stack.pop();
+        assert_eq!(stack.peek(), None);
+    }
+
+    #[test]
+    fn judge_empty() {
+        let mut stack = Stack::<i32>::new();
+        assert!(stack.is_empty());
+        stack.push(10);
+        assert!(!stack.is_empty());
+        stack.push(20);
+        assert!(!stack.is_empty());
+        stack.pop();
+        stack.pop();
+        assert!(stack.is_empty());
     }
 }
