@@ -31,16 +31,17 @@ mod tests {
     #[test]
     fn new_creates_empty_stack() {
         let stack = Stack::<i32>::new();
-        assert!(stack.data.is_empty());
+        assert!(stack.is_empty());
     }
 
     #[test]
     fn push_adds_element() {
         let mut stack = Stack::<i32>::new();
         stack.push(0);
-        assert_eq!(stack.data, vec![0]);
+        assert!(!stack.is_empty());
+        assert_eq!(stack.peek(), Some(&0));
         stack.push(1);
-        assert_eq!(stack.data, vec![0, 1]);
+        assert_eq!(stack.peek(), Some(&1));
     }
 
     #[test]
@@ -69,7 +70,7 @@ mod tests {
     }
 
     #[test]
-    fn judge_empty() {
+    fn is_empty_works() {
         let mut stack = Stack::<i32>::new();
         assert!(stack.is_empty());
         stack.push(10);
