@@ -30,6 +30,18 @@ impl<T> LinkedList<T> {
         new_node.next = replace(&mut self.head, None);
         self.head = Some(Box::new(new_node));
     }
+
+    pub fn pop_front(&mut self) -> Option<T> {
+        let head = replace(&mut self.head, None);
+        match head {
+            None => None,
+            Some(node) => {
+                let node = *node;
+                self.head = node.next;
+                Some(node.value)
+            }
+        }
+    }
 }
 
 #[cfg(test)]
@@ -49,5 +61,15 @@ mod tests {
         assert_eq!(list.front(), Some(&10));
         list.push_front(20);
         assert_eq!(list.front(), Some(&20));
+    }
+
+    #[test]
+    fn test_pop_front() {
+        let mut list = LinkedList::<i32>::new();
+        list.push_front(10);
+        list.push_front(20);
+        assert_eq!(list.pop_front(), Some(20));
+        assert_eq!(list.pop_front(), Some(10));
+        assert_eq!(list.pop_front(), None);
     }
 }
