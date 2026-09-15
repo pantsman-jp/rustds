@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.3.0 (2026-09-15)
+
+### Added
+
+- a generic `LinkedList<T>` data structure.
+- `LinkedList::new()` for creating an empty linked list.
+- `LinkedList::is_empty()` for checking whether the linked list is empty.
+- `LinkedList::front()` for borrowing the first element.
+- `LinkedList::push_front()` for adding an element to the front of the linked list.
+- `LinkedList::pop_front()` for removing and returning the first element.
+- unit tests for the Linked List implementation.
+
 ## 0.2.0 (2026-09-15)
 
 ### Added
