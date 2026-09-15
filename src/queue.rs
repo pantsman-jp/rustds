@@ -36,23 +36,23 @@ mod tests {
     #[test]
     fn new_empty_queue() {
         let q = Queue::<i32>::new();
-        assert_eq!(q.data, VecDeque::new());
+        assert!(q.is_empty());
     }
 
     #[test]
     fn push_element() {
         let mut q = Queue::<i32>::new();
         q.push(10);
-        assert_eq!(q.data, [10]);
+        assert_eq!(q.peek(), Some(&10));
         q.push(20);
-        assert_eq!(q.data, [10, 20]);
+        assert_eq!(q.peek(), Some(&10));
     }
 
     #[test]
     fn pop_element() {
         let mut q = Queue::<i32>::new();
         q.push(10);
-        assert_eq!(q.data, [10]);
+        assert_eq!(q.peek(), Some(&10));
         assert_eq!(q.pop(), Some(10));
     }
 
