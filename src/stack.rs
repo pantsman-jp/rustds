@@ -2,6 +2,7 @@ pub struct Stack<T> {
     data: Vec<T>,
 }
 
+// LIFO
 impl<T> Stack<T> {
     pub fn new() -> Self {
         Stack { data: Vec::new() }
