@@ -3,19 +3,16 @@
 A Rust project for learning and implementing fundamental data structures from scratch.
 The project is intended for learning and practicing data structure implementation in Rust.
 
-## Implemented Data Structures
+## Library Files
 
-- Stack
-
-## Planned Data Structures
-
-- Queue
-- Linked List
-- Binary Search Tree
-- Heap / Priority Queue
-- Hash Table
-- Graph
-- Union-Find
+- ✅ `src/stack`
+- ✅ `src/queue`
+- ❌ Linked List
+- ❌ Binary Search Tree
+- ❌ Heap / Priority Queue
+- ❌ Hash Table
+- ❌ Graph
+- ❌ Union-Find
 
 (Only implemented data structures are added to the project as development progresses.)
 
