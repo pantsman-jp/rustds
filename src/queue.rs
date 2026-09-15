@@ -19,6 +19,10 @@ impl<T> Queue<T> {
     pub fn pop(&mut self) -> Option<T> {
         self.data.pop_front()
     }
+
+    pub fn peek(&self) -> Option<&T> {
+        self.data.front()
+    }
 }
 
 #[cfg(test)]
@@ -46,5 +50,18 @@ mod tests {
         q.push(10);
         assert_eq!(q.data, [10]);
         assert_eq!(q.pop(), Some(10));
+    }
+
+    #[test]
+    fn peek_element() {
+        let mut q = Queue::<i32>::new();
+        q.push(10);
+        assert_eq!(q.peek(), Some(&10));
+        q.push(20);
+        assert_eq!(q.peek(), Some(&10));
+        q.pop();
+        assert_eq!(q.peek(), Some(&20));
+        q.pop();
+        assert_eq!(q.peek(), None);
     }
 }
