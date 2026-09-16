@@ -5,9 +5,9 @@ The project is intended for learning and practicing data structure implementatio
 
 ## Library Files
 
-- ✅ `src/stack`
-- ✅ `src/queue`
-- ✅ `src/linked_list`
+- ✅ Stack: `src/stack`
+- ✅ Queue: `src/queue`
+- ✅ Linked List: `src/linked_list`
 - ❌ Binary Search Tree
 - ❌ Heap / Priority Queue
 - ❌ Hash Table
