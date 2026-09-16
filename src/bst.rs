@@ -39,6 +39,25 @@ impl<T: Ord> BST<T> {
     pub fn insert(&mut self, value: T) {
         Self::insert_node(&mut self.tree, value);
     }
+
+    fn contains_node(node: &Option<Box<Node<T>>>, value: &T) -> bool {
+        match node {
+            Some(tree) => {
+                if &tree.value < value {
+                    Self::contains_node(&tree.right, value)
+                } else if &tree.value == value {
+                    true
+                } else {
+                    Self::contains_node(&tree.left, value)
+                }
+            }
+            None => false,
+        }
+    }
+
+    pub fn contains(&self, value: &T) -> bool {
+        Self::contains_node(&self.tree, value)
+    }
 }
 
 #[cfg(test)]
@@ -54,8 +73,14 @@ mod tests {
     #[test]
     fn test_insert() {
         let mut bst = BST::<i32>::new();
-        assert!(bst.is_empty());
         bst.insert(8);
-        assert!(!bst.is_empty());
+        assert!(bst.contains(&8));
+        bst.insert(10);
+        bst.insert(12);
+        bst.insert(6);
+        bst.insert(4);
+        assert!(bst.contains(&10));
+        assert!(!bst.contains(&5));
+        assert!(!bst.contains(&0));
     }
 }
