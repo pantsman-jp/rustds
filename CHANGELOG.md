@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.4.0 (2026-09-16)
+
+### Added
+
+- a generic `BST<T>` data structure.
+- `BST::new()` for creating an empty binary search tree.
+- `BST::is_empty()` for checking whether the binary search tree is empty.
+- `BST::insert()` for inserting elements into the binary search tree.
+- `BST::contains()` for checking whether an element exists in the binary search tree.
+- `BST::in_order()` for traversing the binary search tree in-order.
+- unit tests for the BST implementation.
+
 ## 0.3.0 (2026-09-15)
 
 ### Added
