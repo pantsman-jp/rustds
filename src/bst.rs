@@ -1,3 +1,5 @@
+use std::vec;
+
 struct Node<T> {
     left: Option<Box<Node<T>>>,
     value: T,
@@ -58,6 +60,23 @@ impl<T: Ord> BST<T> {
     pub fn contains(&self, value: &T) -> bool {
         Self::contains_node(&self.tree, value)
     }
+
+    fn inorder_node<'a>(node: &'a Option<Box<Node<T>>>, result: &mut Vec<&'a T>) {
+        match node {
+            Some(tree) => {
+                Self::inorder_node(&tree.left, result);
+                result.push(&tree.value);
+                Self::inorder_node(&tree.right, result);
+            }
+            None => {}
+        }
+    }
+
+    pub fn in_order(&self) -> Vec<&T> {
+        let mut result = Vec::new();
+        Self::inorder_node(&self.tree, &mut result);
+        result
+    }
 }
 
 #[cfg(test)]
@@ -82,5 +101,16 @@ mod tests {
         assert!(bst.contains(&10));
         assert!(!bst.contains(&5));
         assert!(!bst.contains(&0));
+    }
+
+    #[test]
+    fn test_in_order() {
+        let mut bst = BST::<i32>::new();
+        bst.insert(8);
+        bst.insert(10);
+        bst.insert(12);
+        bst.insert(6);
+        bst.insert(4);
+        assert_eq!(bst.in_order(), vec![&4, &6, &8, &10, &12]);
     }
 }
