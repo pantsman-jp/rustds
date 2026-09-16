@@ -5,14 +5,14 @@ The project is intended for learning and practicing data structure implementatio
 
 ## Library Files
 
-- ✅ Stack: `src/stack`
-- ✅ Queue: `src/queue`
-- ✅ Linked List: `src/linked_list`
-- ✅ Binary Search Tree: `src/bst.rs`
-- ❌ Heap / Priority Queue
-- ❌ Hash Table
-- ❌ Graph
-- ❌ Union-Find
+- [x] Stack: [`src/stack`](https://github.com/pantsman-jp/rustds/blob/master/src/stack.rs)
+- [x] Queue: [`src/queue`](https://github.com/pantsman-jp/rustds/blob/master/src/queue.rs)
+- [x] Linked List: [`src/linked_list`](https://github.com/pantsman-jp/rustds/blob/master/src/linked_list.rs)
+- [x] Binary Search Tree: [`src/bst.rs`](https://github.com/pantsman-jp/rustds/blob/master/src/bst.rs)
+- [ ] Heap / Priority Queue
+- [ ] Hash Table
+- [ ] Graph
+- [ ] Union-Find
 
 (Only implemented data structures are added to the project as development progresses.)
 
