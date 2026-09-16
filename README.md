@@ -8,7 +8,7 @@ The project is intended for learning and practicing data structure implementatio
 - ✅ Stack: `src/stack`
 - ✅ Queue: `src/queue`
 - ✅ Linked List: `src/linked_list`
-- ❌ Binary Search Tree
+- ✅ Binary Search Tree: `src/bst.rs`
 - ❌ Heap / Priority Queue
 - ❌ Hash Table
 - ❌ Graph
