@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.5.0 (2026-09-17)
+
+### Added
+
+- a generic `Heap<T>` data structure.
+- `Heap::new()` for creating an empty min-heap.
+- `Heap::is_empty()` for checking whether the heap is empty.
+- `Heap::push()` for inserting elements into the heap.
+- `Heap::peek()` for borrowing the minimum element.
+- `Heap::pop()` for removing and returning the minimum element.
+- `Heap::len()` for getting the number of elements in the heap.
+- unit tests for the Heap implementation.
+
 ## 0.4.0 (2026-09-16)
 
 ### Added
