@@ -1,12 +1,10 @@
-use std::vec;
-
 struct Node<T> {
     left: Option<Box<Node<T>>>,
     value: T,
     right: Option<Box<Node<T>>>,
 }
 
-struct BST<T> {
+pub struct BST<T> {
     tree: Option<Box<Node<T>>>,
 }
 
