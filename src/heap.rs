@@ -65,6 +65,10 @@ impl<T: Ord> Heap<T> {
         }
         min
     }
+
+    pub fn len(&self) -> usize {
+        self.data.len()
+    }
 }
 
 #[cfg(test)]
@@ -80,6 +84,7 @@ mod tests {
     #[test]
     fn test_push() {
         let mut heap = Heap::<i32>::new();
+        assert_eq!(heap.peek(), None);
         heap.push(10);
         assert_eq!(heap.peek(), Some(&10));
         heap.push(0);
@@ -93,6 +98,7 @@ mod tests {
     #[test]
     fn test_pop() {
         let mut heap = Heap::<i32>::new();
+        assert_eq!(heap.pop(), None);
         heap.push(10);
         heap.push(0);
         assert_eq!(heap.pop(), Some(0));
@@ -100,5 +106,16 @@ mod tests {
         assert_eq!(heap.pop(), Some(5));
         assert_eq!(heap.pop(), Some(10));
         assert_eq!(heap.pop(), None);
+    }
+
+    #[test]
+    fn test_len() {
+        let mut heap = Heap::<i32>::new();
+        assert_eq!(heap.len(), 0);
+        heap.push(10);
+        heap.push(5);
+        assert_eq!(heap.len(), 2);
+        heap.pop();
+        assert_eq!(heap.len(), 1);
     }
 }
