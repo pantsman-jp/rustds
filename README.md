@@ -9,7 +9,7 @@ The project is intended for learning and practicing data structure implementatio
 - [x] Queue: [`src/queue`](https://github.com/pantsman-jp/rustds/blob/master/src/queue.rs)
 - [x] Linked List: [`src/linked_list`](https://github.com/pantsman-jp/rustds/blob/master/src/linked_list.rs)
 - [x] Binary Search Tree: [`src/bst.rs`](https://github.com/pantsman-jp/rustds/blob/master/src/bst.rs)
-- [ ] Heap / Priority Queue
+- [x] Heap: [`src/heap.rs`](https://github.com/pantsman-jp/rustds/blob/master/src/heap.rs)
 - [ ] Hash Table
 - [ ] Graph
 - [ ] Union-Find
