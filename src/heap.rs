@@ -118,4 +118,16 @@ mod tests {
         heap.pop();
         assert_eq!(heap.len(), 1);
     }
+
+    #[test]
+    fn test_pop_order() {
+        let mut heap = Heap::<i32>::new();
+        for value in [5, 1, 8, 3, 2, 7, 4, 6] {
+            heap.push(value);
+        }
+        for expected in 1..=8 {
+            assert_eq!(heap.pop(), Some(expected));
+        }
+        assert_eq!(heap.pop(), None);
+    }
 }
