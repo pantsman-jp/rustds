@@ -11,15 +11,15 @@ impl<T: Ord> Heap<T> {
         self.data.is_empty()
     }
 
-    fn left_idx(index: &usize) -> usize {
+    fn left_idx(index: usize) -> usize {
         2 * index + 1
     }
 
-    fn right_idx(index: &usize) -> usize {
+    fn right_idx(index: usize) -> usize {
         2 * index + 2
     }
 
-    fn parent_idx(index: &usize) -> usize {
+    fn parent_idx(index: usize) -> usize {
         (index - 1) / 2
     }
 
@@ -27,13 +27,17 @@ impl<T: Ord> Heap<T> {
         self.data.push(value);
         let mut index = self.data.len() - 1;
         while index > 0 {
-            let parent_idx = Self::parent_idx(&index);
+            let parent_idx = Self::parent_idx(index);
             if self.data[parent_idx] <= self.data[index] {
                 break;
             }
             self.data.swap(parent_idx, index);
             index = parent_idx;
         }
+    }
+
+    pub fn peek(&self) -> Option<&T> {
+        self.data.first()
     }
 }
 
@@ -45,5 +49,18 @@ mod tests {
     fn test_new() {
         let heap = Heap::<i32>::new();
         assert!(heap.is_empty());
+    }
+
+    #[test]
+    fn test_push() {
+        let mut heap = Heap::<i32>::new();
+        heap.push(10);
+        assert_eq!(heap.peek(), Some(&10));
+        heap.push(0);
+        heap.push(5);
+        assert_eq!(heap.peek(), Some(&0));
+        heap.push(30);
+        heap.push(20);
+        assert_eq!(heap.peek(), Some(&0));
     }
 }
