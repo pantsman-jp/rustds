@@ -39,6 +39,32 @@ impl<T: Ord> Heap<T> {
     pub fn peek(&self) -> Option<&T> {
         self.data.first()
     }
+
+    pub fn pop(&mut self) -> Option<T> {
+        if self.data.is_empty() {
+            return None;
+        }
+        let last_idx = self.data.len() - 1;
+        self.data.swap(0, last_idx);
+        let min = self.data.pop();
+        let mut index = 0;
+        while Self::left_idx(index) < self.data.len() {
+            let left_idx = Self::left_idx(index);
+            let right_idx = Self::right_idx(index);
+            let child_idx =
+                if right_idx < self.data.len() && self.data[right_idx] < self.data[left_idx] {
+                    right_idx
+                } else {
+                    left_idx
+                };
+            if self.data[index] <= self.data[child_idx] {
+                break;
+            }
+            self.data.swap(index, child_idx);
+            index = child_idx;
+        }
+        min
+    }
 }
 
 #[cfg(test)]
@@ -62,5 +88,17 @@ mod tests {
         heap.push(30);
         heap.push(20);
         assert_eq!(heap.peek(), Some(&0));
+    }
+
+    #[test]
+    fn test_pop() {
+        let mut heap = Heap::<i32>::new();
+        heap.push(10);
+        heap.push(0);
+        assert_eq!(heap.pop(), Some(0));
+        heap.push(5);
+        assert_eq!(heap.pop(), Some(5));
+        assert_eq!(heap.pop(), Some(10));
+        assert_eq!(heap.pop(), None);
     }
 }
