@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.6.0 (2026-09-20)
+
+### Added
+
+- a generic `HashTable<K, V>` data structure.
+- `HashTable::new()` for creating an empty hash table.
+- `HashTable::insert()` for inserting and updating key-value pairs.
+- `HashTable::get()` for borrowing a value by key.
+- `HashTable::contains_key()` for checking whether a key exists.
+- `HashTable::remove()` for removing and returning a value by key.
+- collision handling using separate chaining.
+- unit tests for the Hash Table implementation.
+
 ## 0.5.0 (2026-09-17)
 
 ### Added
