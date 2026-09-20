@@ -1,0 +1,85 @@
+use std::collections::hash_map::DefaultHasher;
+use std::hash::{Hash, Hasher};
+
+pub struct HashTable<K, V> {
+    buckets: Vec<Vec<(K, V)>>,
+}
+
+impl<K: Hash + Eq, V> HashTable<K, V> {
+    pub fn new() -> Self {
+        let buckets = (0..16).map(|_| Vec::new()).collect();
+        HashTable { buckets }
+    }
+
+    fn bucket_index(&self, key: &K) -> usize {
+        let mut hasher = DefaultHasher::new();
+        key.hash(&mut hasher);
+        let hash = hasher.finish();
+        (hash % self.buckets.len() as u64) as usize
+    }
+
+    pub fn insert(&mut self, key: K, value: V) {
+        let index = self.bucket_index(&key);
+        for (stored_key, stored_value) in &mut self.buckets[index] {
+            if stored_key == &key {
+                *stored_value = value;
+                return;
+            }
+        }
+        self.buckets[index].push((key, value));
+    }
+
+    pub fn get(&self, key: &K) -> Option<&V> {
+        let index = self.bucket_index(key);
+        for (stored_key, stored_value) in &self.buckets[index] {
+            if stored_key == key {
+                return Some(stored_value);
+            }
+        }
+        None
+    }
+
+    pub fn contains_key(&self, key: &K) -> bool {
+        let index = self.bucket_index(key);
+        for (stored_key, _) in &self.buckets[index] {
+            if stored_key == key {
+                return true;
+            }
+        }
+        false
+    }
+
+    pub fn remove(&mut self, key: &K) -> Option<V> {
+        let index = self.bucket_index(key);
+        let position = self.buckets[index]
+            .iter()
+            .position(|(stored_key, _)| stored_key == key)?;
+        Some(self.buckets[index].remove(position).1)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_get() {
+        let mut table = HashTable::<&str, i32>::new();
+        table.insert("apple", 100);
+        table.insert("banana", 200);
+        assert_eq!(table.get(&"apple"), Some(&100));
+        assert_eq!(table.get(&"banana"), Some(&200));
+        assert_eq!(table.get(&"orange"), None);
+        table.insert("apple", 300);
+        assert_eq!(table.get(&"apple"), Some(&300));
+    }
+
+    #[test]
+    fn test_remove() {
+        let mut table = HashTable::<&str, i32>::new();
+        table.insert("apple", 100);
+        table.insert("banana", 200);
+        assert_eq!(table.remove(&"apple"), Some(100));
+        assert_eq!(table.get(&"apple"), None);
+        assert_eq!(table.remove(&"orange"), None);
+    }
+}
