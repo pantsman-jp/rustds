@@ -38,6 +38,16 @@ impl<K: Hash + Eq, V> HashTable<K, V> {
         }
         None
     }
+
+    pub fn contains_key(&self, key: &K) -> bool {
+        let index = self.bucket_index(key);
+        for (stored_key, _) in &self.buckets[index] {
+            if stored_key == key {
+                return true;
+            }
+        }
+        false
+    }
 }
 
 #[cfg(test)]
