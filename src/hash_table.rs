@@ -48,6 +48,14 @@ impl<K: Hash + Eq, V> HashTable<K, V> {
         }
         false
     }
+
+    pub fn remove(&mut self, key: &K) -> Option<V> {
+        let index = self.bucket_index(key);
+        let position = self.buckets[index]
+            .iter()
+            .position(|(stored_key, _)| stored_key == key)?;
+        Some(self.buckets[index].remove(position).1)
+    }
 }
 
 #[cfg(test)]
@@ -56,15 +64,22 @@ mod tests {
     #[test]
     fn test_get() {
         let mut table = HashTable::<&str, i32>::new();
-
         table.insert("apple", 100);
         table.insert("banana", 200);
-
         assert_eq!(table.get(&"apple"), Some(&100));
         assert_eq!(table.get(&"banana"), Some(&200));
         assert_eq!(table.get(&"orange"), None);
-
         table.insert("apple", 300);
         assert_eq!(table.get(&"apple"), Some(&300));
+    }
+
+    #[test]
+    fn test_remove() {
+        let mut table = HashTable::<&str, i32>::new();
+        table.insert("apple", 100);
+        table.insert("banana", 200);
+        assert_eq!(table.remove(&"apple"), Some(100));
+        assert_eq!(table.get(&"apple"), None);
+        assert_eq!(table.remove(&"orange"), None);
     }
 }
