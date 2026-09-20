@@ -28,4 +28,33 @@ impl<K: Hash + Eq, V> HashTable<K, V> {
         }
         self.buckets[index].push((key, value));
     }
+
+    pub fn get(&self, key: &K) -> Option<&V> {
+        let index = self.bucket_index(key);
+        for (stored_key, stored_value) in &self.buckets[index] {
+            if stored_key == key {
+                return Some(stored_value);
+            }
+        }
+        None
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn test_get() {
+        let mut table = HashTable::<&str, i32>::new();
+
+        table.insert("apple", 100);
+        table.insert("banana", 200);
+
+        assert_eq!(table.get(&"apple"), Some(&100));
+        assert_eq!(table.get(&"banana"), Some(&200));
+        assert_eq!(table.get(&"orange"), None);
+
+        table.insert("apple", 300);
+        assert_eq!(table.get(&"apple"), Some(&300));
+    }
 }
