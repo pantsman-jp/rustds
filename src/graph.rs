@@ -13,6 +13,10 @@ impl Graph {
     pub fn add_edge(&mut self, u: usize, v: usize) {
         self.adjacency_list[u].push(v);
     }
+
+    pub fn neighbors(&self, u: usize) -> &[usize] {
+        &self.adjacency_list[u]
+    }
 }
 
 #[cfg(test)]
