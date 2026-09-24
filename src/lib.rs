@@ -1,4 +1,5 @@
 pub mod bst;
+pub mod graph;
 pub mod hash_table;
 pub mod heap;
 pub mod linked_list;

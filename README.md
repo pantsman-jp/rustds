@@ -11,7 +11,7 @@ The project is intended for learning and practicing data structure implementatio
 - [x] Binary Search Tree: [`src/bst.rs`](https://github.com/pantsman-jp/rustds/blob/master/src/bst.rs)
 - [x] Heap: [`src/heap.rs`](https://github.com/pantsman-jp/rustds/blob/master/src/heap.rs)
 - [x] Hash Table: [`src/hash_table.rs`](https://github.com/pantsman-jp/rustds/blob/master/src/hash_table.rs)
-- [ ] Graph
+- [x] Graph: [`src/graph.rs`](https://github.com/pantsman-jp/rustds/blob/master/src/graph.rs)
 - [ ] Union-Find
 
 (Only implemented data structures are added to the project as development progresses.)
