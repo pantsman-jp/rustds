@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+## 0.7.0 (2026-09-24)
+
+### Added
+
+- a generic `Graph` data structure using an adjacency list.
+- `Graph::new()` for creating a graph with a specified number of vertices.
+- `Graph::add_edge()` for adding directed edges.
+- `Graph::neighbors()` for getting the adjacent vertices of a vertex.
+- `Graph::bfs()` for calculating the shortest distance from a starting vertex using breadth-first search.
+- unit tests for the Graph implementation and BFS.
+
 ## 0.6.0 (2026-09-20)
 
 ### Added
