@@ -8,6 +8,11 @@ impl Graph {
             adjacency_list: vec![Vec::new(); n],
         }
     }
+
+    // 0-index
+    pub fn add_edge(&mut self, u: usize, v: usize) {
+        self.adjacency_list[u].push(v);
+    }
 }
 
 #[cfg(test)]
