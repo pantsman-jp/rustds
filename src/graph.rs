@@ -22,4 +22,15 @@ impl Graph {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    #[test]
+    fn test_add_edge() {
+        let mut g = Graph::new(3);
+        g.add_edge(0, 1);
+        assert_eq!(g.neighbors(0), vec![1]);
+        g.add_edge(1, 1);
+        assert_eq!(g.neighbors(1), vec![1]);
+        g.add_edge(0, 2);
+        assert_eq!(g.neighbors(0), vec![1, 2]);
+    }
 }
